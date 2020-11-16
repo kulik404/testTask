@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Resume;
 
 class SiteController extends Controller
 {
@@ -143,6 +144,10 @@ class SiteController extends Controller
 
     public function actionEdit_reg_resume()
     {
-        return $this->render('edit_reg_resume');
+        $model = new Resume();
+
+        return $this->render('edit_reg_resume',[
+            'model' => $model,
+        ]);
     }
 }
