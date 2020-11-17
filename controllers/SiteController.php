@@ -145,9 +145,17 @@ class SiteController extends Controller
     public function actionEdit_reg_resume()
     {
         $model = new Resume();
+        $townList = [
+            0 => 'Кемерово',
+            1 => 'Новосибирск',
+            2 => 'Иркутск',
+            3 => 'Красноярск',
+            4 => 'Барнаул',
+        ];
 
         return $this->render('edit_reg_resume',[
             'model' => $model,
+            'townList' => $townList,
         ]);
     }
 }

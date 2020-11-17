@@ -80,11 +80,14 @@ $this->registerJsFile('js/jquery-editable-select.js');
                             <div class="paragraph">Дата рождения</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <div class="datepicker-wrap input-group date">
-                                <input type="text" class="dor-input dpicker datepicker-input">
-                                
+                            <!-- <div class="datepicker-wrap input-group date"> -->
+                                <!-- <input type="text" class="dor-input dpicker datepicker-input"> -->
+                                <?= $form->field($model, 'bdate', ['options' => [
+                //'tag' => false,
+                'class'=> 'datepicker-wrap input-group date'
+            ]])->Input('text',['class' => 'form-control dor-input dpicker datepicker-input'])->label(false) ; ?>                                
                                 <img src="images/mdi_calendar_today.svg" alt="">
-                            </div>
+                            <!-- </div> -->
                         </div>
                     </div>
                     <div class="row mb16">
@@ -92,16 +95,49 @@ $this->registerJsFile('js/jquery-editable-select.js');
                             <div class="paragraph">Пол</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <ul class="card-ul-radio profile-radio-list">
+                            <!-- <ul class="card-ul-radio profile-radio-list">
                                 <li>
-                                    <input type="radio" id="test1" name="radio-group" checked>
+                                    <input type="radio" id="test1" name="resume[sex]" checked>
                                     <label for="test1">Мужской</label>
                                 </li>
                                 <li>
-                                    <input type="radio" id="test2" name="radio-group">
+                                    <input type="radio" id="test2" name="resume[sex]">
                                     <label for="test2">Женский</label>
                                 </li>
+                            </ul> -->
+
+                            
+
+
+                            <ul class="card-ul-radio profile-radio-list">
+                               <?php  if (!$model->sex) $model->sex = 1;?>
+                                <?= 
+                                    $form->field($model, 'sex')
+                                        ->radioList(
+                                            [1 => 'Мужской', 2 => 'Женский'],
+                                            [
+                                                'item' => function($index, $label, $name, $checked, $value) {
+                                                    if ($checked) ;
+                                                    $html = '<li><input type="radio" id="'.$index.'" name="'.$name.'" value="'.$value.'"';
+                                                    if ($checked) $html .=' checked';
+                                                    $html .='>';
+                                                    $html .= '<label for="'.$index.'">'.$label.'</label></li>';
+
+                                                    return $html;
+                                                }
+                                            ]
+                                        )
+                                    ->label(false);
+                                ?>
+
                             </ul>
+
+
+
+
+
+
+
                         </div>
                     </div>
                     <div class="row mb16">
@@ -109,7 +145,8 @@ $this->registerJsFile('js/jquery-editable-select.js');
                             <div class="paragraph">Город проживания</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <input type="text" class="dor-input w100">
+                            <!-- <input type="text" class="dor-input w100"> -->
+                            <?= $form->field($model, 'last_name')->dropDownList($townList, ['class' => 'dor-input w100'])->label(false) ; ?>
                         </div>
                     </div>
                     <div class="row mb16">
@@ -124,7 +161,8 @@ $this->registerJsFile('js/jquery-editable-select.js');
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <div class="p-rel">
-                                <input type="text" class="dor-input w100">
+                                <!-- <input type="text" class="dor-input w100"> -->
+                                <?= $form->field($model, 'email')->input('email', ['class' => 'form-control dor-input w100']) ; ?>
                             </div>
                         </div>
                     </div>
@@ -134,7 +172,8 @@ $this->registerJsFile('js/jquery-editable-select.js');
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <div style="width: 140px;" class="p-rel mobile-w100">
-                                <input type="text" class="dor-input w100" placeholder="+7 ___ ___-__-__">
+                                <!-- <input type="text" class="dor-input w100" placeholder="+7 ___ ___-__-__"> -->
+                                <?= $form->field($model, 'phone')->Input('text',['class' => 'form-control p-rel mobile-w100','placeholder' => '+7 ___ ___-__-__'])->label(false) ; ?>
                             </div>
                         </div>
                     </div>
