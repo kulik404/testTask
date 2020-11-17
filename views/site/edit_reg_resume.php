@@ -80,14 +80,14 @@ $this->registerJsFile('js/jquery-editable-select.js');
                             <div class="paragraph">Дата рождения</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <!-- <div class="datepicker-wrap input-group date"> -->
+                            <div class="datepicker-wrap input-group date">
                                 <!-- <input type="text" class="dor-input dpicker datepicker-input"> -->
                                 <?= $form->field($model, 'bdate', ['options' => [
-                //'tag' => false,
-                'class'=> 'datepicker-wrap input-group date'
+                'tag' => false,
+               // 'class'=> 'datepicker-wrap input-group date'
             ]])->Input('text',['class' => 'form-control dor-input dpicker datepicker-input'])->label(false) ; ?>                                
                                 <img src="images/mdi_calendar_today.svg" alt="">
-                            <!-- </div> -->
+                            </div>
                         </div>
                     </div>
                     <div class="row mb16">
@@ -187,7 +187,7 @@ $this->registerJsFile('js/jquery-editable-select.js');
                             <div class="paragraph">Специализация</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <div class="citizenship-select">
+                            <!-- <div class="citizenship-select">
                                 <select class="nselect-1" data-title="Программист">
                                     <option value="01">Программист</option>
                                     <option value="02">Дизайнер</option>
@@ -195,6 +195,11 @@ $this->registerJsFile('js/jquery-editable-select.js');
                                     <option value="04">Акробат</option>
                                 </select>
                             </div>
+                        </div> -->
+                        <?= $form->field($model, 'specialityId', ['options' => 
+                                ['class'=> 'citizenship-select']])
+                            ->dropDownList($speciality, ['class' => 'form-control nselect-1'])
+                            ->label(false) ; ?>
                         </div>
                     </div>
                     <div class="row mb16">
@@ -203,7 +208,11 @@ $this->registerJsFile('js/jquery-editable-select.js');
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <div class="p-rel">
-                                <input placeholder="От" type="text" class="dor-input w100">
+                                <!-- <input placeholder="От" type="text" class="dor-input w100"> -->
+                                <?= $form->field($model, 'salary')
+                                ->textInput([ 'class' => 'form-control dor-input w100',
+                                    'placeholder' => 'От'])
+                                ->label(false) ; ?>
                                 <img class="rub-icon" src="images/rub-icon.svg" alt="rub-icon">
                             </div>
                         </div>
@@ -214,34 +223,62 @@ $this->registerJsFile('js/jquery-editable-select.js');
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <div class="profile-info">
+
+                                <!--  -->
+                                <? $it = [] ?>
+                                <?= $form->field($model, 'fEmp', [
+                                    //'options' => ['class'=> 'form-check d-flex'],
+                                    'checkTemplate' => 
+                                    '<div class="form-check d-flex">
+                                        {input}
+                                        {label}
+                                        {error}
+                                        {hint}
+                                    </div>',])
+                                        ->checkboxList([ 'class' => 'form-control form-check-input',
+                                            //'id' => 'exampleCheck1',
+                                            //'tag' => false,
+                                        ])
+                                         ; ?>
+                                <!--  -->
                                 <div class="form-check d-flex">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    
                                     <label class="form-check-label" for="exampleCheck1"></label>
                                     <label for="exampleCheck1" class="profile-info__check-text job-resolution-checkbox">Полная
                                         занятость</label>
                                 </div>
-                                <div class="form-check d-flex">
+
+
+                                <!-- <div class="form-check d-flex">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck2">
+
                                     <label class="form-check-label" for="exampleCheck2"></label>
                                     <label for="exampleCheck2" class="profile-info__check-text job-resolution-checkbox">Частичная
                                         занятость</label>
                                 </div>
+
+
                                 <div class="form-check d-flex">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck3">
                                     <label class="form-check-label" for="exampleCheck3"></label>
                                     <label for="exampleCheck3" class="profile-info__check-text job-resolution-checkbox">Проектная/Временная
                                         работа</label>
                                 </div>
+
                                 <div class="form-check d-flex">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck4">
                                     <label class="form-check-label" for="exampleCheck4"></label>
                                     <label for="exampleCheck4" class="profile-info__check-text job-resolution-checkbox">Волонтёрство</label>
                                 </div>
+
                                 <div class="form-check d-flex">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck5">
                                     <label class="form-check-label" for="exampleCheck5"></label>
                                     <label for="exampleCheck5" class="profile-info__check-text job-resolution-checkbox">Стажировка</label>
-                                </div>
+                                </div> -->
+
+
                             </div>
                         </div>
                     </div>

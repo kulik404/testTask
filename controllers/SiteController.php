@@ -7,9 +7,11 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Resume;
+use app\models\Speciality;
 
 class SiteController extends Controller
 {
@@ -144,7 +146,12 @@ class SiteController extends Controller
 
     public function actionEdit_reg_resume()
     {
+
+        $speciality = Speciality::find()->asArray()->all();
+        $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
+        
         $model = new Resume();
+        
         $townList = [
             0 => 'Кемерово',
             1 => 'Новосибирск',
@@ -156,6 +163,7 @@ class SiteController extends Controller
         return $this->render('edit_reg_resume',[
             'model' => $model,
             'townList' => $townList,
+            'speciality' => $speciality,
         ]);
     }
 }
