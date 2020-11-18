@@ -150,7 +150,11 @@ class SiteController extends Controller
         $speciality = Speciality::find()->asArray()->all();
         $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
         
-        $model = new Resume();
+        if (!$model) $model = new Resume();
+        if ($model->load(Yii::$app->request->post()) && $model->save()
+        ){
+           return $this->redirect(['resume_view']);
+        }
         
         $townList = [
             0 => 'Кемерово',
@@ -159,6 +163,8 @@ class SiteController extends Controller
             3 => 'Красноярск',
             4 => 'Барнаул',
         ];
+
+
 
         return $this->render('edit_reg_resume',[
             'model' => $model,

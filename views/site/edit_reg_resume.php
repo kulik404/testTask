@@ -9,11 +9,11 @@ $this->title = 'Создание нового резюме';
 $this->registerCssFile('css/jquery.nselect.css'); 
 $this->registerCssFile('css/bootstrap-datepicker.css');
 
-$this->registerJsFile('js/jquery.nselect.min.js');
-$this->registerJsFile('js/bootstrap-datepicker.js');
-$this->registerJsFile('js/bootstrap-datepicker.ru.min.js'); 
-$this->registerJsFile('js/jquery-editable-select.js'); 
-
+$this->registerJsFile('js/jquery.nselect.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('js/bootstrap-datepicker.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('js/bootstrap-datepicker.ru.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]); 
+$this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\JqueryAsset::className()]]); 
+print_r($model);
 ?>
 
 <div class="content p-rel">
@@ -42,6 +42,9 @@ $this->registerJsFile('js/jquery-editable-select.js');
                             </div>
                             <label class="custom-file-upload">
                                 <input type="file"/>
+                                <?php 
+                                   $model->foto = 'images/profile-foto.jpg'; 
+                                 ?>
                                 Изменить фото
                             </label>
                         </div>
@@ -52,7 +55,7 @@ $this->registerJsFile('js/jquery-editable-select.js');
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <!-- <input type="text" class="dor-input w100"> -->
-                            <?= $form->field($model, 'last_name')->textInput(['maxlength' => true, 'class' => 'dor-input w100'])->label(false) ; ?>
+                            <?= $form->field($model, 'last_name')->textInput(['maxlength' => true, 'class' => 'form-control dor-input w100'])->label(false) ; ?>
                         </div>
                     </div>
                     <div class="row mb16">
@@ -61,7 +64,7 @@ $this->registerJsFile('js/jquery-editable-select.js');
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <!-- <input type="text" class="dor-input w100"> -->
-                            <?= $form->field($model, 'first_name')->textInput(['maxlength' => true, 'class' => 'dor-input w100'])->label(false) ; ?>
+                            <?= $form->field($model, 'first_name')->textInput(['maxlength' => true, 'class' => 'form-control dor-input w100'])->label(false) ; ?>
                         </div>
                     </div>
                     <div class="row mb16">
@@ -70,7 +73,7 @@ $this->registerJsFile('js/jquery-editable-select.js');
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <!-- <input type="text" class="dor-input w100"> -->
-                            <?= $form->field($model, 'middle_name')->textInput(['maxlength' => true, 'class' => 'dor-input w100'])->label(false) ; ?>
+                            <?= $form->field($model, 'middle_name')->textInput(['maxlength' => true, 'class' => 'form-control dor-input w100'])->label(false) ; ?>
                         </div>
                     </div>
                    
@@ -80,11 +83,10 @@ $this->registerJsFile('js/jquery-editable-select.js');
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <div class="datepicker-wrap input-group date">
-                                <input type="text" class="dor-input dpicker datepicker-input">
-                                <?//= $form->field($model, 'bdate', ['options' => [
-                //'tag' => false,
-               // 'class'=> 'datepicker-wrap input-group date'
-           // ]])->Input('text',['class' => 'form-control dor-input dpicker datepicker-input'])->label(false) ; ?>                                
+                               <!--  <input type="text" class="dor-input dpicker datepicker-input"> -->
+                                <?= $form->field($model, 'bdate', ['options' => ['tag' => false]])
+                                    ->input('text',['class' => 'form-control dor-input dpicker datepicker-input'])
+                                    ->label(false) ; ?>                                
                                 <img src="images/mdi_calendar_today.svg" alt="">
                             </div>
                         </div>
@@ -146,7 +148,7 @@ $this->registerJsFile('js/jquery-editable-select.js');
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <!-- <input type="text" class="dor-input w100"> -->
-                            <?= $form->field($model, 'last_name')->dropDownList($townList, ['class' => 'dor-input w100'])->label(false) ; ?>
+                            <?= $form->field($model, 'townId')->dropDownList($townList, ['class' => 'dor-input w100'])->label(false) ; ?>
                         </div>
                     </div>
                     <div class="row mb16">
@@ -367,8 +369,8 @@ $this->registerJsFile('js/jquery-editable-select.js');
 
                                     <label for="test10242">Есть опыт работы</label>
                                 </li> -->
-                                <?= 
-                                    $form->field($model, 'exp')
+                                <?php if (is_null ($model->exp)) $model->exp = 0; ?>
+                                <?= $form->field($model, 'exp')
                                         ->radioList(
                                             [0 => 'Нет опыта работы', 1 => 'Есть опыт работы'],
                                             [

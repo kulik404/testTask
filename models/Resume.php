@@ -48,6 +48,7 @@ class resume extends \yii\db\ActiveRecord
     {
         return [
             [['foto', 'last_name', 'first_name', 'middle_name', 'bdate', 'sex', 'townId', 'email', 'phone', 'specialityId', 'salary', 'about'], 'required'],
+           ['bdate', 'date'],
            //['bdate', 'date', 'format' => 'php:Y-m-d'],
             [['sex', 'townId', 'phone', 'specialityId',  'fEmp', 'pEmp', 'tEmp', 'vEmp', 'iEmp', 'fSchedule', 'sSchedule', 'flexSchedule', 'remSchedule', 'rSchedule', 'exp'], 'integer'],
             [['about'], 'string'],
