@@ -5,7 +5,6 @@ use yii\helpers\Url;
 
 $this->title = 'Мои резюме';
  
-
 ?>
 
 <div class="content">
