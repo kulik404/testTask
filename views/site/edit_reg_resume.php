@@ -6,6 +6,7 @@ use yii\bootstrap4\ActiveForm;
 use  yii\helpers\Html;
 
 $this->title = 'Создание нового резюме';
+
 $this->registerCssFile('css/jquery.nselect.css'); 
 $this->registerCssFile('css/bootstrap-datepicker.css');
 
@@ -13,7 +14,7 @@ $this->registerJsFile('js/jquery.nselect.min.js', ['depends' => [\yii\web\Jquery
 $this->registerJsFile('js/bootstrap-datepicker.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile('js/bootstrap-datepicker.ru.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]); 
 $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\JqueryAsset::className()]]); 
-print_r($model);
+
 ?>
 
 <div class="content p-rel">
@@ -42,9 +43,6 @@ print_r($model);
                             </div>
                             <label class="custom-file-upload">
                                 <input type="file"/>
-                                <?php 
-                                   $model->foto = 'images/profile-foto.jpg'; 
-                                 ?>
                                 Изменить фото
                             </label>
                         </div>
@@ -55,7 +53,7 @@ print_r($model);
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <!-- <input type="text" class="dor-input w100"> -->
-                            <?= $form->field($model, 'last_name')->textInput(['maxlength' => true, 'class' => 'form-control dor-input w100'])->label(false) ; ?>
+                            <?= $form->field($model, 'last_name')->textInput(['class' => 'form-control dor-input w100'])->label(false) ; ?>
                         </div>
                     </div>
                     <div class="row mb16">
@@ -64,7 +62,7 @@ print_r($model);
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <!-- <input type="text" class="dor-input w100"> -->
-                            <?= $form->field($model, 'first_name')->textInput(['maxlength' => true, 'class' => 'form-control dor-input w100'])->label(false) ; ?>
+                            <?= $form->field($model, 'first_name')->textInput(['class' => 'form-control dor-input w100'])->label(false) ; ?>
                         </div>
                     </div>
                     <div class="row mb16">
@@ -73,7 +71,7 @@ print_r($model);
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <!-- <input type="text" class="dor-input w100"> -->
-                            <?= $form->field($model, 'middle_name')->textInput(['maxlength' => true, 'class' => 'form-control dor-input w100'])->label(false) ; ?>
+                            <?= $form->field($model, 'middle_name')->textInput(['class' => 'form-control dor-input w100'])->label(false) ; ?>
                         </div>
                     </div>
                    
@@ -91,7 +89,6 @@ print_r($model);
                             </div>
                         </div>
                     </div>
-
                     <div class="row mb16">
                         <div class="col-lg-2 col-md-3 dflex-acenter">
                             <div class="paragraph">Пол</div>
@@ -571,7 +568,7 @@ print_r($model);
                         </div>
                         <div class="col-lg-5 col-md-7 col-12">
                             <!-- <textarea class="dor-input w100 h176 mb8"></textarea> -->
-                            <?= $form->field($model, 'about')->textarea(['class' => 'dor-input w100 h176 mb8'])->label(false) ; ?>
+                            <?= $form->field($model, 'about')->textarea(['class' => 'form-control dor-input w100 h176 mb8'])->label(false) ; ?>
                         </div>
                     </div>
                     <div class="row mb128 mobile-mb64">
