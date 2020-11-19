@@ -139,7 +139,7 @@ class SiteController extends Controller
         return $this->render('my_resume');
     }
 
-    public function actionResume_view()
+    public function actionResume_view($id)
     {
         $speciality = Speciality::find()->asArray()->all();
         $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
@@ -152,12 +152,10 @@ class SiteController extends Controller
             4 => 'Барнаул',
         ];
 
-        $id = 1;
-
         $model = Resume::findOne($id);
 
-
         return $this->render('resume_view',[
+            'id' => $id,
             'model' => $model,
             'speciality' => $speciality,
             'townList' => $townList,
@@ -176,9 +174,9 @@ class SiteController extends Controller
         }
         if ($model->load(Yii::$app->request->post()) && $model->save()
         ){
-           return $this->redirect('resume_view', [
-              'id' => $model->id,  
-            ]);
+
+           //return $this->runAction ( 'resume_view', ['id' => $model->id] );
+           $this->redirect(['site/resume_view', 'id'=>$model->id]);
         }
         
         $townList = [
@@ -191,7 +189,7 @@ class SiteController extends Controller
 
 
 
-        return $this->render('edit_reg_resume',[
+        return $this->render('edit_reg_resume', [
             'model' => $model,
             'townList' => $townList,
             'speciality' => $speciality,

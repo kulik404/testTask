@@ -3,7 +3,7 @@
 /* @var $this yii\web\View */
 
 use yii\bootstrap4\ActiveForm;
-use  yii\helpers\Html;
+use yii\helpers\Html;
 
 $this->title = 'Создание нового резюме';
 

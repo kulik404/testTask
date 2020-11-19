@@ -4,13 +4,12 @@
 
 
 $this->title = 'Резюме PHP разработчик';
-$this->registerCssFile('css/jquery.nselect.css'); 
-$this->registerCssFile('css/bootstrap-datepicker.css');
-$this->registerJsFile('js/jquery.nselect.min.js');
-$this->registerJsFile('js/bootstrap-datepicker.js');
-$this->registerJsFile('js/bootstrap-datepicker.ru.min.js'); 
+// $this->registerCssFile('css/jquery.nselect.css'); 
+// $this->registerCssFile('css/bootstrap-datepicker.css');
+// $this->registerJsFile('js/jquery.nselect.min.js');
+// $this->registerJsFile('js/bootstrap-datepicker.js');
+// $this->registerJsFile('js/bootstrap-datepicker.ru.min.js'); 
  
-
 ?>
 
 <div class="content p-rel">
