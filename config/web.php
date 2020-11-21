@@ -44,6 +44,10 @@ $config = [
             ],
         ],
         'db' => $db,
+        'formatter' => [
+            'language' => 'ru-RU',
+            'timeZone' => 'UTC',
+        ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,

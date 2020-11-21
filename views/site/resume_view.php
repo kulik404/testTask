@@ -3,7 +3,7 @@
 /* @var $this yii\web\View */
 
 
-$this->title = 'Резюме PHP разработчик';
+$this->title = 'Резюме '.$speciality[$model->specialityId];
 // $this->registerCssFile('css/jquery.nselect.css'); 
 // $this->registerCssFile('css/bootstrap-datepicker.css');
 // $this->registerJsFile('js/jquery.nselect.min.js');
@@ -16,7 +16,7 @@ $this->title = 'Резюме PHP разработчик';
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="mt8 mb32"><a href="#"><img src="images/blue-left-arrow.svg" alt="arrow"> Резюме в
+                    <div class="mt8 mb32"><a href="<?= Yii::$app->request->referrer ?>"><img src="images/blue-left-arrow.svg" alt="arrow"> Резюме в
                         Кемерово</a>
                     </div>
                 </div>
@@ -31,7 +31,7 @@ $this->title = 'Резюме PHP разработчик';
                         <?= $speciality[$model->specialityId]; ?>
                     </div>
                     <div class="paragraph-lead mb16">
-                        <span class="mr24"><?= $model->salary; ?> ₽</span>
+                        <span class="mr24"><?=Yii::$app->formatter->asCurrency($model->salary, 'RUB', [NumberFormatter::FRACTION_DIGITS => 0]) ; ?></span>
                         <span>Опыт работы 3 года</span>
                     </div>
                     <div class="profile-info company-profile-info resume-view__info-blick">
@@ -45,17 +45,16 @@ $this->title = 'Резюме PHP разработчик';
                         <div class="profile-info__block company-profile-info__block mb8">
                             <div class="profile-info__block-left company-profile-info__block-left">Возраст
                             </div>
-                            <div class="profile-info__block-right company-profile-info__block-right">43 года</div>
+                            <div class="profile-info__block-right company-profile-info__block-right"><?= $model->age();?></div>
                         </div>
                         <div class="profile-info__block company-profile-info__block mb8">
                             <div class="profile-info__block-left company-profile-info__block-left">Занятость</div>
-                            <div class="profile-info__block-right company-profile-info__block-right">Полная</div>
+                            <div class="profile-info__block-right company-profile-info__block-right"><?= $model->job();?></div>
                         </div>
                         <div class="profile-info__block company-profile-info__block mb8">
                             <div class="profile-info__block-left company-profile-info__block-left">График работы
                             </div>
-                            <div class="profile-info__block-right company-profile-info__block-right">Гибкий график,
-                                полный день
+                            <div class="profile-info__block-right company-profile-info__block-right"><?= $model->schedule();?>
                             </div>
                         </div>
                         <div class="profile-info__block company-profile-info__block mb8">
@@ -77,7 +76,7 @@ $this->title = 'Резюме PHP разработчик';
                                 Телефон
                             </div>
                             <div class="profile-info__block-right company-profile-info__block-right"><a
-                                    href="#">+7 123 456 78 90</a>
+                                    href="#"><?= $model->phone; ?></a>
                             </div>
                         </div>
                     </div>

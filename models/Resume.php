@@ -47,7 +47,7 @@ class resume extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['foto', 'last_name', 'first_name', 'middle_name', 'bdate', 'sex', 'townId', 'email', 'phone', 'specialityId', 'salary', 'about'], 'required'],
+            [['foto', 'last_name', 'first_name', 'middle_name', 'bdate', 'sex', 'townId', 'email', 'phone', 'specialityId', 'salary'], 'required'],
            //['bdate', 'date'],
            //['bdate', 'date', 'format' => 'php:Y-m-d'],
             [['sex', 'townId', 'phone', 'specialityId',  'fEmp', 'pEmp', 'tEmp', 'vEmp', 'iEmp', 'fSchedule', 'sSchedule', 'flexSchedule', 'remSchedule', 'rSchedule', 'exp'], 'integer'],
@@ -90,4 +90,43 @@ class resume extends \yii\db\ActiveRecord
             'about' => 'О себе',
         ];
     }
+
+    // Cтрока с возрастом
+    public function age()
+    {
+        $y = Yii::$app->formatter->asRelativeTime($this->bdate);
+        $y = str_replace(' назад', '', $y);
+        return $y;
+    }
+
+    //Занятость
+    public function job()
+    {
+        $job = '';
+        if ($this->fEmp) $job = 'Полная занятость';
+        if ($this->pEmp) { $job == '' ? $job = 'Частичная занятость' : $job .= ', Частичная занятость';}
+        if ($this->tEmp) { $job == '' ? $job = 'Проектная/Временная работа' : $job .= ', Проектная/Временная работа';}
+        if ($this->vEmp) { $job == '' ? $job = 'Волонтёрство' : $job .= ', Волонтёрство';}
+        if ($this->iEmp) { $job == '' ? $job = 'Стажировка' : $job .= ', Стажировка';}
+        //$job = mb_strtolower($job);
+        //$job = mb_substr(mb_strtoupper($job, 'utf-8'), 0, 1, 'utf-8') . mb_substr($job, 1, mb_strlen($job)-1, 'utf-8');
+
+        return $job;
+    }
+
+    //График работы
+    public function schedule()
+    {
+        $schedule = '';
+        if ($this->fSchedule) $schedule = 'Полный день';
+        if ($this->sSchedule) { $schedule == '' ? $schedule = 'Сменный график' : $schedule .= ', Сменный график';}
+        if ($this->flexSchedule) { $schedule == '' ? $schedule = 'Гибкий график' : $schedule .= ', Гибкий график';}
+        if ($this->remSchedule) { $schedule == '' ? $schedule = 'Удалённая работа' : $schedule .= ', Удалённая работа';}
+        if ($this->rSchedule) { $schedule== '' ? $schedule = 'Вахтовый метод' : $schedule .= ', Вахтовый метод';}
+        //$schedule = mb_strtolower($schedule);
+        //$schedule = mb_substr(mb_strtoupper($schedule, 'utf-8'), 0, 1, 'utf-8') . mb_substr($schedule, 1, mb_strlen($schedule)-1, 'utf-8');
+
+        return $schedule;
+    }
+
 }

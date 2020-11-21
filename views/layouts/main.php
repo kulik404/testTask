@@ -36,14 +36,14 @@ AppAsset::register($this);
     <header class="header">
         <div class="container">
             <nav class="navbar navigation">
-                <a class="navbar-brand" href=""><?= Html::img('/images/logo.svg', ['alt' => 'Logo']) ?>
+                <a class="navbar-brand" href="<?= Url::to(['/site/resume_list']) ?>"><?= Html::img('/images/logo.svg', ['alt' => 'Logo']) ?></a>
                 <div class="header__login header__login-mobile">
                 </div>
                 <ul class="navigation-nav">
-                    <li class="nav-item active">
+                    <li class="nav-item <?php if (Yii::$app->controller->action->id == 'resume_list') echo  'active'?>">
                         <a class="nav-link" href="<?= Url::to(['/site/resume_list']) ?>">Резюме</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item <?php if (Yii::$app->controller->action->id == 'my_resume') echo  'active'?>">
                         <a class="nav-link" href="<?= Url::to(['/site/my_resume']) ?>">Мои резюме</a>
                     </li>
                 </ul>

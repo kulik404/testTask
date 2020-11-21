@@ -4,12 +4,12 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\web\Response;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
+//use yii\web\Response;
+use yii\data\Pagination;
 use yii\helpers\ArrayHelper;
-use app\models\LoginForm;
-use app\models\ContactForm;
+//use app\models\LoginForm;
 use app\models\Resume;
 use app\models\Speciality;
 
@@ -64,83 +64,80 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+       // return $this->render('index');
+        $this->redirect(['site/resume_list']);
     }
 
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
+    
 
     public function actionResume_list()
     {
-        return $this->render('resume_list');
+        $speciality = Speciality::find()->asArray()->all();
+        $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
+
+        $townList = [
+            0 => 'Кемерово',
+            1 => 'Новосибирск',
+            2 => 'Иркутск',
+            3 => 'Красноярск',
+            4 => 'Барнаул',
+        ];
+
+        $query = Resume::find();
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 6,
+            'totalCount' => $query->count(),
+        ]);
+
+        $resumeList = $query->orderBy('id')
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        return $this->render('resume_list', [
+            'resumeList' => $resumeList,
+            'pagination' => $pagination,
+            'speciality' => $speciality,
+            'townList' => $townList,
+        ]);
     }
 
     public function actionMy_resume()
     {
-        return $this->render('my_resume');
+        $speciality = Speciality::find()->asArray()->all();
+        $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
+
+        $townList = [
+            0 => 'Кемерово',
+            1 => 'Новосибирск',
+            2 => 'Иркутск',
+            3 => 'Красноярск',
+            4 => 'Барнаул',
+        ];
+
+        $resumeList = Resume::find()->all();;
+
+        return $this->render('my_resume',[
+            'resumeList' => $resumeList,
+            'speciality' => $speciality,
+            'townList' => $townList,
+        ]);
+    }
+
+    public function actionPre_view($id)
+    {
+
+        $model = Resume::findOne($id);
+        $model->updateCounters(['count' => 1]);
+
+        return $this->redirect(['site/resume_view', 'id'=>$id]);
     }
 
     public function actionResume_view($id)
     {
+        
+
         $speciality = Speciality::find()->asArray()->all();
         $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
 
@@ -175,8 +172,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()
         ){
 
-           //return $this->runAction ( 'resume_view', ['id' => $model->id] );
-           $this->redirect(['site/resume_view', 'id'=>$model->id]);
+           return $this->redirect(['site/resume_view', 'id'=>$model->id]);
         }
         
         $townList = [
@@ -194,5 +190,16 @@ class SiteController extends Controller
             'townList' => $townList,
             'speciality' => $speciality,
         ]);
+
+    }
+
+    public function actionResume_del($id)
+    {
+
+       $resume = Resume::findOne($id);
+       $resume->delete(); 
+
+       return $this->redirect(['site/my_resume']);
+
     }
 }
