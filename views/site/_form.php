@@ -1,4 +1,6 @@
 <?php
+
+use yii\bootstrap4\ActiveForm;
 $month = [
             1 => 'Январь',
             2 => 'Февраль',
@@ -25,12 +27,13 @@ $month = [
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <div class="d-flex justify-content-between">
-                                <?= $form->field($exp, 'mStart', ['options' => 
+                                <?php $forme = ActiveForm::begin(['id' => 'form'.$key]); ?>
+                                <?= $forme->field($exp, 'mStart', ['options' => 
 		                                ['class'=> 'citizenship-select w100 mr16']])
 		                            ->dropDownList($month, ['class' => 'form-control nselect-1'])
 		                            ->label(false) ; ?>
                                 <div class="citizenship-select w100">
-                                    <?= $form->field($exp, 'yStart')
+                                    <?= $forme->field($exp, 'yStart')
                                     ->textInput(['class' => 'form-control dor-input w100', 'placeholder' => '2006'] )
                                     ->label(false) ; ?>
                                 </div>
@@ -44,13 +47,13 @@ $month = [
                         <div class="col-lg-3 col-md-4 col-11">
                             <div class="d-flex justify-content-between">
                                 <div class="citizenship-select w100 mr16">
-                                    <?= $form->field($exp, 'mEnd', ['options' => 
+                                    <?= $forme->field($exp, 'mEnd', ['options' => 
                                         ['class'=> 'citizenship-select w100 mr16']])
                                     ->dropDownList($month, ['class' => 'form-control nselect-1'])
                                     ->label(false) ; ?>
                                 </div>
                                 <div class="citizenship-select w100">
-                                    <?= $form->field($exp, 'yEnd')
+                                    <?= $forme->field($exp, 'yEnd')
                                     ->textInput(['class' => 'form-control dor-input w100', 'placeholder' => '2006'] )
                                     ->label(false) ; ?>
                                 </div>
@@ -64,7 +67,7 @@ $month = [
                             <div class="profile-info">
                                 <div class="form-check d-flex">
                                     <!-- <input type="checkbox" class="form-check-input" id="exampleCheck111"> -->
-                                    <?= $form->field($exp, 'now',['checkTemplate' => '{input}',
+                                    <?= $forme->field($exp, 'now',['checkTemplate' => '{input}',
                                                                     'options' => ['tag' => false]])
                                     ->checkbox([ 'class' => 'form-check-input',
                                                 'id' => 'exampleCheck'.$key])
@@ -82,7 +85,10 @@ $month = [
                             <div class="paragraph">Организация</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <input type="text" class="dor-input w100">
+                            <!-- <input type="text" class="dor-input w100"> -->
+                            <?= $forme->field($exp, 'organization')
+                                    ->textInput(['class' => 'form-control dor-input w100'] )
+                                    ->label(false) ; ?>
                         </div>
                     </div>
                     <div class="row mb16">
@@ -90,7 +96,10 @@ $month = [
                             <div class="paragraph">Должность</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <input type="text" class="dor-input w100">
+                            <!-- <input type="text" class="dor-input w100"> -->
+                            <?= $forme->field($exp, 'position')
+                                    ->textInput(['class' => 'form-control dor-input w100'] )
+                                    ->label(false) ; ?>
                         </div>
                     </div>
                     <div class="row mb16">
@@ -98,9 +107,15 @@ $month = [
                             <div class="paragraph">Обязанности, функции, достижения</div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-12">
-                            <textarea class="dor-input w100 h96 mb8"
-                                      placeholder="Расскажите о своих обязанностях, функциях и достижениях"></textarea>
+                            <!-- <textarea class="dor-input w100 h96 mb8"
+                                      placeholder="Расскажите о своих обязанностях, функциях и достижениях"></textarea> -->
+                                      <?= $forme->field($exp, 'functions')
+                                    ->textArea(['class' => 'form-control dor-input w100 h96 mb8', 
+                                        'placeholder' => 'Расскажите о своих обязанностях, функциях и достижениях'
+                                    ] )
+                                    ->label(false) ; ?>
                             <div><a href="#">Удалить место работы</a></div>
+                                      <?php ActiveForm::end(); ?>
                             <!--  --><!--  --><!--  -->
                             <div><a href="#">+ Добавить место работы</a></div>
                             <!--  --><!--  --><!--  -->
