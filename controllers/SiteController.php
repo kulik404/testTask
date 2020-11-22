@@ -12,6 +12,7 @@ use yii\helpers\ArrayHelper;
 //use app\models\LoginForm;
 use app\models\Resume;
 use app\models\Speciality;
+use app\models\Experience;
 
 class SiteController extends Controller
 {
@@ -159,20 +160,22 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionEdit_reg_resume()
+    public function actionEdit_reg_resume($id = NULL)
     {
 
         $speciality = Speciality::find()->asArray()->all();
         $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
         
+        $model = Resume::findOne($id);
         if (!$model) {
             $model = new Resume(); 
             $model->foto = 'images/profile-foto.jpg'; 
         }
-        if ($model->load(Yii::$app->request->post()) && $model->save()
-        ){
+        if ($model->load(Yii::$app->request->post())){
+            $model->uDate = date('Y-m-d H:i:s');
+            $model->save();
 
-           return $this->redirect(['site/resume_view', 'id'=>$model->id]);
+            return $this->redirect(['site/my_resume']);
         }
         
         $townList = [
@@ -183,12 +186,16 @@ class SiteController extends Controller
             4 => 'Барнаул',
         ];
 
+        $experience =  Experience::find()->where(['resumeId' => $model->id])->all();
+        //$experience[] = new Experience();  
+        //$experience[] = new Experience();  
 
 
         return $this->render('edit_reg_resume', [
             'model' => $model,
             'townList' => $townList,
             'speciality' => $speciality,
+            'experience' => $experience,
         ]);
 
     }

@@ -36,6 +36,7 @@ class Experience extends \yii\db\ActiveRecord
             [['resumeId', 'mStart', 'yStart', 'organization', 'position'], 'required'],
             [['resumeId', 'mStart', 'yStart', 'mEnd', 'yEnd', 'now'], 'integer'],
             [['organization', 'position'], 'string'],
+            [['yStart', 'yEnd'],'number','min'=>1990, 'max'=>date('Y')],
         ];
     }
 

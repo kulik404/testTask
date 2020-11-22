@@ -388,95 +388,21 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                         </div>
                     </div>
 
-                    <!--  --><!--  --><!--  -->
+                    <?php 
+                        if (is_array($experience)) {
+                            foreach ($experience as $key =>$exp){
+                                echo $this->render('_form', [
+                                    'exp' => $exp,
+                                    'form'=> $form,
+                                    'key'=> $key
+                                ]); 
+                                }
+                        }else{
+                           echo $this->render('_form', ['exp' => $experience, 'form'=> $form, 'key'=> 0]);
 
-                    <div class="row mb24">
-                        <div class="col-lg-2 col-md-3 dflex-acenter">
-                            <div class="paragraph">Начало работы</div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-11">
-                            <div class="d-flex justify-content-between">
-                                <div class="citizenship-select w100 mr16">
-                                    <select class="nselect-1" data-title="Май">
-                                        <option value="01">Июнь</option>
-                                        <option value="02">Июль</option>
-                                        <option value="03">Август</option>
-                                        <option value="04">Сентябрь</option>
-                                    </select>
-                                </div>
-                                <div class="citizenship-select w100">
-                                    <input placeholder="2006" type="text" class="dor-input w100">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb8">
-                        <div class="col-lg-2 col-md-3 dflex-acenter">
-                            <div class="paragraph">Окончание работы</div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-11">
-                            <div class="d-flex justify-content-between">
-                                <div class="citizenship-select w100 mr16">
-                                    <select class="nselect-1" data-title="Март">
-                                        <option value="01">Июнь</option>
-                                        <option value="02">Июль</option>
-                                        <option value="03">Август</option>
-                                        <option value="04">Сентябрь</option>
-                                    </select>
-                                </div>
-                                <div class="citizenship-select w100">
-                                    <input placeholder="2006" type="text" class="dor-input w100">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb32">
-                        <div class="col-lg-2 col-md-3">
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-11">
-                            <div class="profile-info">
-                                <div class="form-check d-flex">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck111">
-                                    <label class="form-check-label" for="exampleCheck111"></label>
-                                    <label for="exampleCheck111"
-                                           class="profile-info__check-text job-resolution-checkbox">По настоящее
-                                        время</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb16">
-                        <div class="col-lg-2 col-md-3 dflex-acenter">
-                            <div class="paragraph">Организация</div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-11">
-                            <input type="text" class="dor-input w100">
-                        </div>
-                    </div>
-                    <div class="row mb16">
-                        <div class="col-lg-2 col-md-3 dflex-acenter">
-                            <div class="paragraph">Должность</div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-11">
-                            <input type="text" class="dor-input w100">
-                        </div>
-                    </div>
-                    <div class="row mb16">
-                        <div class="col-lg-2 col-md-3">
-                            <div class="paragraph">Обязанности, функции, достижения</div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <textarea class="dor-input w100 h96 mb8"
-                                      placeholder="Расскажите о своих обязанностях, функциях и достижениях"></textarea>
-                            <div><a href="#">Удалить место работы</a></div>
-                            <!--  --><!--  --><!--  -->
-                            <div><a href="#">+ Добавить место работы</a></div>
-                            <!--  --><!--  --><!--  -->
-                        </div>
-                    </div>
-
-                    <!--  --><!--  --><!--  -->
-
+                        }
+                    ?>
+                    
 
                         
                     </div>
