@@ -1,5 +1,8 @@
 <?php
 /* @var $this yii\web\View */
+/* @var $model app\models\Resume */
+/* @var $townList An array of string objects */
+/* @var $speciality An array of string objects */
 
 $this->title = 'Резюме '.$speciality[$model->specialityId];
 

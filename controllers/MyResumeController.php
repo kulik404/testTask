@@ -11,7 +11,11 @@ use app\models\Speciality;
 class MyResumeController extends \yii\web\Controller
 {
 
-    public function actionEditreg($id = NULL)
+    /**
+     * Страница создания и редактирования резюме.
+     * При успешном сохранении открыться страница моих резюме 
+     */
+    public function actionEditReg($id = NULL)
     {
         $speciality = Speciality::find()->asArray()->all();
         $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
@@ -25,7 +29,7 @@ class MyResumeController extends \yii\web\Controller
             $model->uDate = date('Y-m-d H:i:s');
             $model->save();
 
-            return $this->redirect(['myResume/list']);
+            return $this->redirect(['my-resume/list']);
         }
         
         $townList = [
@@ -39,7 +43,7 @@ class MyResumeController extends \yii\web\Controller
         //$experience =  Experience::find()->where(['resumeId' => $model->id])->all();
 
 
-        return $this->render('editreg', [
+        return $this->render('edit-reg', [
             'model' => $model,
             'townList' => $townList,
             'speciality' => $speciality,
@@ -47,6 +51,9 @@ class MyResumeController extends \yii\web\Controller
         ]);
     }
 
+    /**
+     * Страница моих резюме.
+     */
     public function actionList()
     {
         $speciality = Speciality::find()->asArray()->all();
@@ -70,6 +77,10 @@ class MyResumeController extends \yii\web\Controller
 
     }
 
+
+    /**
+     * Страница просмотра одного резюме.
+     */
     public function actionView($id)
     {
         $speciality = Speciality::find()->asArray()->all();
@@ -92,6 +103,9 @@ class MyResumeController extends \yii\web\Controller
         ]);
     }
 
+    /**
+     * удаление одного резюме.
+     */
     public function actionDel($id)
     {
 

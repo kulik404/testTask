@@ -9,6 +9,10 @@ use app\models\Speciality;
 
 class ResumeController extends \yii\web\Controller
 {
+    
+    /**
+     * Страница поиска и фильтрации резюме.
+     */
     public function actionList()
     {
         $speciality = Speciality::find()->asArray()->all();
@@ -42,6 +46,10 @@ class ResumeController extends \yii\web\Controller
         ]);
     }
 
+
+    /**
+     * Страница просмотра одного резюме.
+     */
     public function actionView($id)
     {
         $model = Resume::findOne($id);

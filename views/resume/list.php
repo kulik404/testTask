@@ -4,6 +4,10 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
 /* @var $this yii\web\View */
+/* @var $townList An array of string objects */
+/* @var $speciality An array of string objects */
+/* @var $resumeList An array of app\models\Resume */
+/* @var $$pagination yii\data\Pagination */
 
 $this->title = 'Список резюме';
 

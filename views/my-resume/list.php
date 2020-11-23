@@ -13,7 +13,7 @@ $this->title = 'Мои резюме';
         <div class="container">
             <div class="col-lg-9">
                 <div class="main-title mb32 mt50 d-flex justify-content-between align-items-center">Мои резюме
-                    <a href="<?= Url::toRoute('my-resume/editreg'); ?>" class="link-orange-btn orange-btn my-vacancies-add-btn">Добавить резюме</a><a
+                    <a href="<?= Url::toRoute('my-resume/edit-reg'); ?>" class="link-orange-btn orange-btn my-vacancies-add-btn">Добавить резюме</a><a
                             class="my-vacancies-mobile-add-btn link-orange-btn orange-btn plus-btn" href="#">+</a></div>
                 <div class="tabs mb64">
                     <div class="tabs__content active">
@@ -32,7 +32,7 @@ $this->title = 'Мои резюме';
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right"
                                                  aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="<?= Url::to(['my-resume/editreg', 'id'=>$model->id]) ?>">Редактировать</a>
+                                                <a class="dropdown-item" href="<?= Url::to(['my-resume/edit-reg', 'id'=>$model->id]) ?>">Редактировать</a>
                                                 <a class="dropdown-item" href="<?= Url::to(['my-resume/del', 'id'=>$model->id]) ?>">Удалить</a>
                                             </div>
                                         </div>
