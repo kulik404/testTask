@@ -338,7 +338,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                         // }else{
                         //    echo $this->render('_form', ['exp' => $experience, 'form'=> $form, 'key'=> 0]);
 
-                        // }
                     ?>
                        
                     </div>
