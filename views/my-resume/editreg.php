@@ -1,9 +1,12 @@
 <?php
-
-/* @var $this yii\web\View */
-
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\Html;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Resume */
+/* @var $townList An array of string objects */
+/* @var $speciality An array of string objects */
+/* @var $form yii\widgets\ActiveForm */
 
 $this->title = 'Создание нового резюме';
 
@@ -14,9 +17,7 @@ $this->registerJsFile('js/jquery.nselect.min.js', ['depends' => [\yii\web\Jquery
 $this->registerJsFile('js/bootstrap-datepicker.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile('js/bootstrap-datepicker.ru.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]); 
 $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\JqueryAsset::className()]]); 
-
 ?>
-
 <div class="content p-rel">
         <div class="container">
             <div class="row">
@@ -33,7 +34,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
             </div>
             <div class="col-12">
                 <?php $form = ActiveForm::begin(); ?>
-                <!-- <form action="#"> -->
                     <div class="row mb32">
                         <div class="col-lg-2 col-md-3 dflex-acenter">
                             <div class="paragraph">Фото</div>
@@ -52,7 +52,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                             <div class="paragraph">Фамилия</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <!-- <input type="text" class="dor-input w100"> -->
                             <?= $form->field($model, 'last_name')->textInput(['class' => 'form-control dor-input w100'])->label(false) ; ?>
                         </div>
                     </div>
@@ -61,7 +60,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                             <div class="paragraph">Имя</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <!-- <input type="text" class="dor-input w100"> -->
                             <?= $form->field($model, 'first_name')->textInput(['class' => 'form-control dor-input w100'])->label(false) ; ?>
                         </div>
                     </div>
@@ -70,7 +68,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                             <div class="paragraph">Отчество</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <!-- <input type="text" class="dor-input w100"> -->
                             <?= $form->field($model, 'middle_name')->textInput(['class' => 'form-control dor-input w100'])->label(false) ; ?>
                         </div>
                     </div>
@@ -81,7 +78,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <div class="datepicker-wrap input-group date">
-                               <!--  <input type="text" class="dor-input dpicker datepicker-input"> -->
                                 <?= $form->field($model, 'bdate', ['options' => ['tag' => false]])
                                     ->input('text',['class' => 'form-control dor-input dpicker datepicker-input'])
                                     ->label(false) ; ?>                                
@@ -94,20 +90,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                             <div class="paragraph">Пол</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <!-- <ul class="card-ul-radio profile-radio-list">
-                                <li>
-                                    <input type="radio" id="test1" name="resume[sex]" checked>
-                                    <label for="test1">Мужской</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="test2" name="resume[sex]">
-                                    <label for="test2">Женский</label>
-                                </li>
-                            </ul> -->
-
-                            
-
-
                             <ul class="card-ul-radio profile-radio-list">
                                <?php  if (!$model->sex) $model->sex = 1;?>
                                 <?= 
@@ -128,15 +110,7 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                                         )
                                     ->label(false);
                                 ?>
-
                             </ul>
-
-
-
-
-
-
-
                         </div>
                     </div>
                     <div class="row mb16">
@@ -144,7 +118,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                             <div class="paragraph">Город проживания</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <!-- <input type="text" class="dor-input w100"> -->
                             <?= $form->field($model, 'townId')->dropDownList($townList, ['class' => 'dor-input w100'])->label(false) ; ?>
                         </div>
                     </div>
@@ -160,7 +133,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <div class="p-rel">
-                                <!-- <input type="text" class="dor-input w100"> -->
                                 <?= $form->field($model, 'email')->input('email', ['class' => 'form-control dor-input w100']) ; ?>
                             </div>
                         </div>
@@ -171,7 +143,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <div style="width: 140px;" class="p-rel mobile-w100">
-                                <!-- <input type="text" class="dor-input w100" placeholder="+7 ___ ___-__-__"> -->
                                 <?= $form->field($model, 'phone')->Input('text',['class' => 'form-control p-rel mobile-w100','placeholder' => '+7 ___ ___-__-__'])->label(false) ; ?>
                             </div>
                         </div>
@@ -186,15 +157,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                             <div class="paragraph">Специализация</div>
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
-                            <!-- <div class="citizenship-select">
-                                <select class="nselect-1" data-title="Программист">
-                                    <option value="01">Программист</option>
-                                    <option value="02">Дизайнер</option>
-                                    <option value="03">Повар</option>
-                                    <option value="04">Акробат</option>
-                                </select>
-                            </div>
-                        </div> -->
                         <?= $form->field($model, 'specialityId', ['options' => 
                                 ['class'=> 'citizenship-select']])
                             ->dropDownList($speciality, ['class' => 'form-control nselect-1'])
@@ -207,7 +169,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <div class="p-rel">
-                                <!-- <input placeholder="От" type="text" class="dor-input w100"> -->
                                 <?= $form->field($model, 'salary')
                                 ->textInput([ 'class' => 'form-control dor-input w100',
                                     'placeholder' => 'От'])
@@ -223,7 +184,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                         <div class="col-lg-3 col-md-4 col-11">
                             <div class="profile-info">
                                 <div class="form-check d-flex">
-                                    <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1" name="resume[fEmp]"> -->
                                     <?= $form->field($model, 'fEmp',['checkTemplate' => '{input}',
                                                                     'options' => ['tag' => false]                            ])
                                     ->checkbox([ 'class' => 'form-check-input',
@@ -234,7 +194,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                                         занятость</label>
                                 </div>
                                 <div class="form-check d-flex">
-                                    <!-- <input type="checkbox" class="form-check-input" id="exampleCheck2"> -->
                                     <?= $form->field($model, 'pEmp',['checkTemplate' => '{input}',
                                                                     'options' => ['tag' => false]                            ])
                                     ->checkbox([ 'class' => 'form-check-input',
@@ -245,7 +204,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                                         занятость</label>
                                 </div>
                                 <div class="form-check d-flex">
-                                    <!-- <input type="checkbox" class="form-check-input" id="exampleCheck3"> -->
                                     <?= $form->field($model, 'tEmp',['checkTemplate' => '{input}',
                                                                     'options' => ['tag' => false]                            ])
                                     ->checkbox([ 'class' => 'form-check-input',
@@ -256,7 +214,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                                         работа</label>
                                 </div>
                                 <div class="form-check d-flex">
-                                    <!-- <input type="checkbox" class="form-check-input" id="exampleCheck4"> -->
                                     <?= $form->field($model, 'vEmp',['checkTemplate' => '{input}',
                                                                     'options' => ['tag' => false]                            ])
                                     ->checkbox([ 'class' => 'form-check-input',
@@ -266,7 +223,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                                     <label for="exampleCheck4" class="profile-info__check-text job-resolution-checkbox">Волонтёрство</label>
                                 </div>
                                 <div class="form-check d-flex">
-                                    <!-- <input type="checkbox" class="form-check-input" id="exampleCheck5"> -->
                                     <?= $form->field($model, 'iEmp',['checkTemplate' => '{input}',
                                                                     'options' => ['tag' => false]                            ])
                                     ->checkbox([ 'class' => 'form-check-input',
@@ -275,8 +231,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                                     <label class="form-check-label" for="exampleCheck5"></label>
                                     <label for="exampleCheck5" class="profile-info__check-text job-resolution-checkbox">Стажировка</label>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -287,7 +241,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                         <div class="col-lg-3 col-md-4 col-11">
                             <div class="profile-info">
                                 <div class="form-check d-flex">
-                                    <!-- <input type="checkbox" class="form-check-input" id="exampleCheck6"> -->
                                     <?= $form->field($model, 'fSchedule',['checkTemplate' => '{input}',
                                                                     'options' => ['tag' => false]                            ])
                                     ->checkbox([ 'class' => 'form-check-input',
@@ -298,7 +251,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                                         день</label>
                                 </div>
                                 <div class="form-check d-flex">
-                                    <!-- <input type="checkbox" class="form-check-input" id="exampleCheck7"> -->
                                     <?= $form->field($model, 'sSchedule',['checkTemplate' => '{input}',
                                                                     'options' => ['tag' => false]                            ])
                                     ->checkbox([ 'class' => 'form-check-input',
@@ -309,7 +261,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                                         график</label>
                                 </div>
                                 <div class="form-check d-flex">
-                                    <!-- <input type="checkbox" class="form-check-input" id="exampleCheck8"> -->
                                     <?= $form->field($model, 'flexSchedule',['checkTemplate' => '{input}',
                                                                     'options' => ['tag' => false]                            ])
                                     ->checkbox([ 'class' => 'form-check-input',
@@ -320,7 +271,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                                         график</label>
                                 </div>
                                 <div class="form-check d-flex">
-                                    <!-- <input type="checkbox" class="form-check-input" id="exampleCheck9"> -->
                                     <?= $form->field($model, 'remSchedule',['checkTemplate' => '{input}',
                                                                     'options' => ['tag' => false]                            ])
                                     ->checkbox([ 'class' => 'form-check-input',
@@ -331,7 +281,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                                         работа</label>
                                 </div>
                                 <div class="form-check d-flex">
-                                    <!-- <input type="checkbox" class="form-check-input" id="exampleCheck10"> -->
                                     <?= $form->field($model, 'rSchedule',['checkTemplate' => '{input}',
                                                                     'options' => ['tag' => false]                            ])
                                     ->checkbox([ 'class' => 'form-check-input',
@@ -356,16 +305,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                         </div>
                         <div class="col-lg-3 col-md-4 col-11">
                             <ul class="card-ul-radio profile-radio-list">
-                                <!-- <li>
-                                    <input type="radio" id="test9131" name="radio-group3123" checked="">
-
-                                    <label for="test9131">Нет опыта работы</label>
-                                </li>
-                                <li>
-                                    <input type="radio" id="test10242" name="radio-group3123">
-
-                                    <label for="test10242">Есть опыт работы</label>
-                                </li> -->
                                 <?php if (is_null ($model->exp)) $model->exp = 0; ?>
                                 <?= $form->field($model, 'exp')
                                         ->radioList(
@@ -387,24 +326,21 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                             </ul>
                         </div>
                     </div>
+                    <?// Форма опыт работ не реализована 
+                        // if (is_array($experience)) {
+                        //     foreach ($experience as $key =>$exp){
+                        //         echo $this->render('_form', [
+                        //             'exp' => $exp,
+                        //             'form'=> $form,
+                        //             'key'=> $key
+                        //         ]); 
+                        //         }
+                        // }else{
+                        //    echo $this->render('_form', ['exp' => $experience, 'form'=> $form, 'key'=> 0]);
 
-                    <?php 
-                        if (is_array($experience)) {
-                            foreach ($experience as $key =>$exp){
-                                echo $this->render('_form', [
-                                    'exp' => $exp,
-                                    'form'=> $form,
-                                    'key'=> $key
-                                ]); 
-                                }
-                        }else{
-                           echo $this->render('_form', ['exp' => $experience, 'form'=> $form, 'key'=> 0]);
-
-                        }
+                        // }
                     ?>
-                    
-
-                        
+                       
                     </div>
                     <div class="row mb32">
                         <div class="col-12">
@@ -416,7 +352,6 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                             <div class="paragraph">О себе</div>
                         </div>
                         <div class="col-lg-5 col-md-7 col-12">
-                            <!-- <textarea class="dor-input w100 h176 mb8"></textarea> -->
                             <?= $form->field($model, 'about')->textarea(['class' => 'form-control dor-input w100 h176 mb8'])->label(false) ; ?>
                         </div>
                     </div>
@@ -424,14 +359,10 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                         <div class="col-lg-2 col-md-3">
                         </div>
                         <div class="col-lg-10 col-md-9">
-                            <!-- <a href="#" class="orange-btn link-orange-btn">Сохранить</a> -->
                             <?= Html::submitButton('Сохранить', ['class' => 'orange-btn link-orange-btn']) ?>
                         </div>
                     </div>
-                <!-- </form> -->
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
-
-

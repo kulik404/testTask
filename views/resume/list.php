@@ -1,21 +1,17 @@
 <?php
-
-/* @var $this yii\web\View */
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
+/* @var $this yii\web\View */
+
 $this->title = 'Список резюме';
 
 $this->registerCssFile('css/jquery.nselect.css'); 
-$this->registerCssFile('css/bootstrap-datepicker.css');
 $this->registerJsFile('js/jquery.nselect.min.js');
-$this->registerJsFile('js/bootstrap-datepicker.js');
-$this->registerJsFile('js/bootstrap-datepicker.ru.min.js'); 
 
 ?>
-
-    <div class="header-search">
+<div class="header-search">
         <div class="container">
             <div class="header-search__wrap">
                 <form class="header-search__form">
@@ -62,7 +58,7 @@ $this->registerJsFile('js/bootstrap-datepicker.ru.min.js');
 
                     <?php foreach ($resumeList as $model): ?>
                     <div class="vakancy-page-block company-list-search__block resume-list__block p-rel mb16"
-                        onclick="location.href='<?= Url::to(['site/pre_view', 'id'=>$model->id]) ?>';">
+                        onclick="location.href='<?= Url::to(['resume/view', 'id'=>$model->id]) ?>';">
                         <div class="company-list-search__block-left">
                             <div class="resume-list__block-img mb8">
                                 <img src="images/profile-foto.jpg" alt="profile">
@@ -91,7 +87,6 @@ $this->registerJsFile('js/bootstrap-datepicker.ru.min.js');
                     <?= LinkPager::widget([
                         'pagination' => $pagination,
                         'options' => ['class' => 'dor-pagination mb128'],
-                        //'firstPageLabel' => ' Назад',
                         'prevPageLabel' => '<img class="mr8" src="images/mini-left-arrow.svg" alt="arrow"> Назад',
                         'prevPageCssClass' => 'page-link-prev',
                         'nextPageLabel' => 'Далее <img class="ml8" src="images/mini-right-arrow.svg" alt="arrow">',

@@ -1,17 +1,9 @@
 <?php
-
 /* @var $this yii\web\View */
 
-
 $this->title = 'Резюме '.$speciality[$model->specialityId];
-// $this->registerCssFile('css/jquery.nselect.css'); 
-// $this->registerCssFile('css/bootstrap-datepicker.css');
-// $this->registerJsFile('js/jquery.nselect.min.js');
-// $this->registerJsFile('js/bootstrap-datepicker.js');
-// $this->registerJsFile('js/bootstrap-datepicker.ru.min.js'); 
- 
-?>
 
+?>
 <div class="content p-rel">
         <div class="container">
             <div class="row">

@@ -58,6 +58,7 @@ $config = [
         */
     ],
     'params' => $params,
+    'defaultRoute' => 'resume/list',
 ];
 
 if (YII_ENV_DEV) {

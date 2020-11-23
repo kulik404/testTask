@@ -6,9 +6,6 @@
 use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\helpers\Url;
-//use yii\bootstrap\Nav;
-//use yii\bootstrap\NavBar;
-//use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
@@ -36,25 +33,25 @@ AppAsset::register($this);
     <header class="header">
         <div class="container">
             <nav class="navbar navigation">
-                <a class="navbar-brand" href="<?= Url::to(['/site/resume_list']) ?>"><?= Html::img('/images/logo.svg', ['alt' => 'Logo']) ?></a>
+                <a class="navbar-brand" href="<?= Url::to(['/resume/list']) ?>"><?= Html::img('/images/logo.svg', ['alt' => 'Logo']) ?></a>
                 <div class="header__login header__login-mobile">
                 </div>
                 <ul class="navigation-nav">
-                    <li class="nav-item <?php if (Yii::$app->controller->action->id == 'resume_list') echo  'active'?>">
-                        <a class="nav-link" href="<?= Url::to(['/site/resume_list']) ?>">Резюме</a>
+                    <li class="nav-item <?php if (Yii::$app->controller->id == 'resume') echo  'active'?>">
+                        <a class="nav-link" href="<?= Url::to(['/resume/list']) ?>">Резюме</a>
                     </li>
-                    <li class="nav-item <?php if (Yii::$app->controller->action->id == 'my_resume') echo  'active'?>">
-                        <a class="nav-link" href="<?= Url::to(['/site/my_resume']) ?>">Мои резюме</a>
+                    <li class="nav-item <?php if (Yii::$app->controller->id == 'my-resume') echo  'active'?>">
+                        <a class="nav-link" href="<?= Url::to(['/my-resume/list']) ?>">Мои резюме</a>
                     </li>
                 </ul>
                 <div class="navigation-menu__mobile">
                     <ul class="navigation-menu__mobile-nav">
                         <div class="navigation-menu__mobile-nav-top">
                             <li class="navigation-menu__mobile-nav-item active">
-                                <a class="nav-link" href="<?= Url::to(['/site/resume_list']) ?>">Резюме</a>
+                                <a class="nav-link" href="<?= Url::to(['/resume/list']) ?>">Резюме</a>
                             </li>
                             <li class="navigation-menu__mobile-nav-item">
-                                <a class="nav-link" href="<?= Url::to(['/site/my_resume']) ?>">Мои резюме</a>
+                                <a class="nav-link" href="<?= Url::to(['/my-resume/list']) ?>">Мои резюме</a>
                             </li>
                         </div>
                     </ul>
