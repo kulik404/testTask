@@ -3,22 +3,22 @@
 use yii\db\Migration;
 
 /**
- * Class m201123_202421_create_post_tables
+ * Class m201123_202421_create_tables
  * 
  * Cоздание таблиц
  * Структура таблицы `resume`
  * Структура таблицы `speciality`
+ * Структура таблицы `experience`
  */
-class m201123_202421_create_post_tables extends Migration
+class m201123_202421_create_tables extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-
-        $this->execute(
-            CREATE TABLE `resume` (
+        $this->execute("
+            CREATE TABLE `testtask`.`resume` (
               `id` int(11) NOT NULL,
               `foto` varchar(255) NOT NULL COMMENT 'Фото',
               `last_name` varchar(255) NOT NULL COMMENT 'Фамилия',
@@ -48,18 +48,31 @@ class m201123_202421_create_post_tables extends Migration
               `uDate` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Дата создание'
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
             ALTER TABLE `resume` ADD PRIMARY KEY (`id`);
-        );
+        ");
 
-        $this->execute(
+        $this->execute("
             CREATE TABLE `speciality` (
               `id` int(11) NOT NULL,
               `speciality` varchar(255) NOT NULL
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-        );
+            ALTER TABLE `speciality` ADD PRIMARY KEY (`id`);
+        ");
 
-
-
-
+        $this->execute("
+            CREATE TABLE `experience` (
+              `id` int(11) NOT NULL,
+              `resumeId` int(11) NOT NULL,
+              `mStart` int(2) NOT NULL COMMENT 'месяц начала работы',
+              `yStart` int(4) NOT NULL COMMENT 'год начала работы',
+              `mEnd` int(2) DEFAULT NULL COMMENT 'месяц окончания работы',
+              `yEnd` int(4) DEFAULT NULL COMMENT 'год окончания работы',
+              `now` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'По настоящее время',
+              `organization` text NOT NULL COMMENT 'Организация',
+              `position` text NOT NULL COMMENT 'Должность',
+              `functions` text DEFAULT NULL COMMENT 'Обязанности, функции, достижения'
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+            ALTER TABLE `experience` ADD PRIMARY KEY (`id`), ADD KEY `resumeId` (`resumeId`);
+        ");
 
     }
 
