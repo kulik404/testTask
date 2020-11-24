@@ -326,20 +326,7 @@ $this->registerJsFile('js/jquery-editable-select.js',['depends' => [\yii\web\Jqu
                             </ul>
                         </div>
                     </div>
-                    <?// Форма опыт работ не реализована 
-                        // if (is_array($experience)) {
-                        //     foreach ($experience as $key =>$exp){
-                        //         echo $this->render('_form', [
-                        //             'exp' => $exp,
-                        //             'form'=> $form,
-                        //             'key'=> $key
-                        //         ]); 
-                        //         }
-                        // }else{
-                        //    echo $this->render('_form', ['exp' => $experience, 'form'=> $form, 'key'=> 0]);
-
-                    ?>
-                       
+                    
                     </div>
                     <div class="row mb32">
                         <div class="col-12">

@@ -18,13 +18,7 @@ class ResumeController extends \yii\web\Controller
         $speciality = Speciality::find()->asArray()->all();
         $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
 
-        $townList = [
-            0 => 'Кемерово',
-            1 => 'Новосибирск',
-            2 => 'Иркутск',
-            3 => 'Красноярск',
-            4 => 'Барнаул',
-        ];
+        $townList = MyResumeController::getTownList();
 
         $query = Resume::find();
 
@@ -58,13 +52,7 @@ class ResumeController extends \yii\web\Controller
         $speciality = Speciality::find()->asArray()->all();
         $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
 
-        $townList = [
-            0 => 'Кемерово',
-            1 => 'Новосибирск',
-            2 => 'Иркутск',
-            3 => 'Красноярск',
-            4 => 'Барнаул',
-        ];
+        $townList = MyResumeController::getTownList();
 
         $model = Resume::findOne($id);
 
@@ -74,5 +62,7 @@ class ResumeController extends \yii\web\Controller
             'townList' => $townList,
         ]);
     }
+
+    
 
 }

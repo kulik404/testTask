@@ -13,9 +13,9 @@ class MyResumeController extends \yii\web\Controller
 
     /**
      * Страница создания и редактирования резюме.
-     * При успешном сохранении открыться страница моих резюме 
+     * При успешном сохранении должна открыться страница моих резюме 
      */
-    public function actionEditReg($id = NULL)
+    public function actionEditReg($id = null)
     {
         $speciality = Speciality::find()->asArray()->all();
         $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
@@ -32,22 +32,12 @@ class MyResumeController extends \yii\web\Controller
             return $this->redirect(['my-resume/list']);
         }
         
-        $townList = [
-            0 => 'Кемерово',
-            1 => 'Новосибирск',
-            2 => 'Иркутск',
-            3 => 'Красноярск',
-            4 => 'Барнаул',
-        ];
-
-        //$experience =  Experience::find()->where(['resumeId' => $model->id])->all();
-
+        $townList = $this->getTownList();
 
         return $this->render('edit-reg', [
             'model' => $model,
             'townList' => $townList,
             'speciality' => $speciality,
-            //'experience' => $experience,
         ]);
     }
 
@@ -59,13 +49,7 @@ class MyResumeController extends \yii\web\Controller
         $speciality = Speciality::find()->asArray()->all();
         $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
 
-        $townList = [
-            0 => 'Кемерово',
-            1 => 'Новосибирск',
-            2 => 'Иркутск',
-            3 => 'Красноярск',
-            4 => 'Барнаул',
-        ];
+        $townList = $this->getTownList();
 
         $resumeList = Resume::find()->all();;
 
@@ -86,13 +70,7 @@ class MyResumeController extends \yii\web\Controller
         $speciality = Speciality::find()->asArray()->all();
         $speciality = ArrayHelper::map($speciality, 'id', 'speciality');
 
-        $townList = [
-            0 => 'Кемерово',
-            1 => 'Новосибирск',
-            2 => 'Иркутск',
-            3 => 'Красноярск',
-            4 => 'Барнаул',
-        ];
+        $townList = $this->getTownList();
 
         $model = Resume::findOne($id);
 
@@ -114,6 +92,23 @@ class MyResumeController extends \yii\web\Controller
 
        return $this->redirect('list');
 
+    }
+
+    /**
+     * Список городов
+     */
+    public static function getTownList()
+    {
+
+        $townList = [
+            0 => 'Кемерово',
+            1 => 'Новосибирск',
+            2 => 'Иркутск',
+            3 => 'Красноярск',
+            4 => 'Барнаул',
+        ];
+
+        return  $townList;
     }
 
 }

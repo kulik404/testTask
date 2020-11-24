@@ -3,10 +3,10 @@
 use yii\db\Migration;
 
 /**
- * Class m201124_064801_demo_data
+ * Class m201124_184301_demo_data
  * вставка демо данных
  */
-class m201124_064801_demo_data extends Migration
+class m201124_184301_demo_data extends Migration
 {
     /**
      * {@inheritdoc}
@@ -21,10 +21,10 @@ class m201124_064801_demo_data extends Migration
                 (7, 'images/profile-foto.jpg', 'dfgh', 'wertwertew', 'wertwertewrt', '2028-10-06', 1, 2, 'mail@mail.ru', '79998887766', 3, 765432, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 'jiuhgfcdxsa', 4, '2020-11-21 10:42:57', '2020-11-21 10:42:57'),
                 (8, 'images/profile-foto.jpg', 'ewtrwet', 'erwter', 'wertrertew', '1888-03-20', 1, 4, 'mail@mail.ru', '79998887766', 4, 4444, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 'sadfvfdsfvsa', 3, '2020-11-21 10:42:57', '2020-11-21 10:42:57');
                 ALTER TABLE `resume` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-        ");
+            ");
 
-        $this->execute("
-            INSERT INTO `speciality` (`id`, `speciality`) VALUES
+        $this->execute(
+            "INSERT INTO `speciality` (`id`, `speciality`) VALUES
                 (1, 'Администратор баз данных'),
                 (2, 'Аналитик'),
                 (3, 'Арт-директор'),
@@ -51,8 +51,8 @@ class m201124_064801_demo_data extends Migration
                 (24, 'CRM системы'),
                 (25, 'Web инженер'),
                 (26, 'Web мастер');
-                ALTER TABLE `speciality` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-        ");
+                ALTER TABLE `speciality` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;"
+            );
 
 
     }
@@ -62,23 +62,8 @@ class m201124_064801_demo_data extends Migration
      */
     public function safeDown()
     {
-        echo "m201124_064801_demo_data cannot be reverted.\n";
-
-        return false;
+        $this->truncateTable('speciality');
+        $this->truncateTable('resume');
     }
 
-    /*
-    // Use up()/down() to run migration code without a transaction.
-    public function up()
-    {
-
-    }
-
-    public function down()
-    {
-        echo "m201124_064801_demo_data cannot be reverted.\n";
-
-        return false;
-    }
-    */
 }
